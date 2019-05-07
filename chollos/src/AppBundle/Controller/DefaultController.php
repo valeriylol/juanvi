@@ -9,8 +9,15 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+        $productos =$this->getDoctrine()->getRepository('AppBundle:Producto')->findAll();
 
 
+        return $this->render('base.html.twig',array('productos' => $productos));
+    }
+    public function productoAction($id)
+    {
+        $producto =$this->getDoctrine()->getRepository('AppBundle:Producto')->find($id);
 
+        return $this->render('producto.html.twig', array('producto' => $producto));
     }
 }
